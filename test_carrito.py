@@ -37,8 +37,19 @@ def test_carrito(login_in_driver):
           #Navegar al carrito de compras
           driver.find_element(By.CLASS_NAME,"shopping_cart_link").click()
 
-          time.sleep(2)                    #Comprobar que el producto añadido aparezca correctamente en el carrito
+          time.sleep(2)                   
+          
+          #Comprobar que el producto añadido aparezca correctamente en el carrito
+            ##recupero la lista de productos del carrito
+          compras = driver.find_elements(By.CLASS_NAME,"cart_list")
+           
+          print(compras)
+          #obtengo el nombre del elemento que esta en el carrito 
+          productoComprado = compras[0].find_element(By.CLASS_NAME, "inventory_item_name").text
 
+          assert  productoComprado == nombre_producto , "El nombre del producto no es el seleccionado"
+
+          print(f"El producto comprado coincide con el que está en el carrito que es: {productoComprado}")
 
     except Exception as e:
         print(f"Error en testa_login: {e}")

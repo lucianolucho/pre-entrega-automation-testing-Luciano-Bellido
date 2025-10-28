@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 import time
 import pytest
 
-
+#funcion de prueba para el navegacion de catalogo 
 def test_navegacion_catalogo(login_in_driver):  
 
     try:
@@ -30,7 +30,10 @@ def test_navegacion_catalogo(login_in_driver):
         assert menu.is_displayed() , "el menú no se esta mostrando"
         
         #valida lapresencia del filtro  
+        filtro = driver.find_element(By.CSS_SELECTOR,'#shopping_cart_container')  
 
+        assert filtro.is_displayed() , "el carrito  no se esta mostrando"  
+        
 
     except Exception as e:
         print(f"error en test_login:  {e}")
